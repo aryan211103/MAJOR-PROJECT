@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stored Student Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Submitted Student Data</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>GPA</th>
+            <th>Degree</th>
+            <th>Skills</th>
+            <th>Languages</th>
+            <th>Job Experience</th>
+            <th>Extra Curricular</th>
+            <th>Internship Duration</th>
+            <th>Research Papers</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.gpa }}</td>
+            <td>{{ user.degree }}</td>
+            <td>{{ user.skills | join(', ') }}</td>
+            <td>{{ user.languages | join(', ') }}</td>
+            <td>{{ user.jobExperience }}</td>
+            <td>{{ user.extraCurricular }}</td>
+            <td>{{ user.internshipDuration }}</td>
+            <td>{{ user.researchPapers }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

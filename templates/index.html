@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            width: auto;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .view-data-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Information Form</h2>
+<form id="studentForm">
+    <!-- Name -->
+    <label for="name">Student Name (Surname, First Name, Middle Name):</label>
+    <input type="text" id="name" name="name" placeholder="Surname   FirstName   MiddleName" required>
+
+    <!-- GPA -->
+    <label for="gpa">GPA (Out of 4):</label>
+    <input type="number" step="0.01" id="gpa" name="gpa" required>
+
+    <!-- Bachelor's Degree -->
+    <label for="degree">Bachelor's Degree:</label>
+    <select id="degree" name="degree" required>
+        <option value="Robotics">Robotics</option>
+        <option value="Computer Engineering">Computer Engineering</option>
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Software Engineering">Software Engineering</option>
+        <option value="Information Technology">Information Technology</option>
+        <option value="Electrical Engineering">Electrical Engineering</option>
+        <option value="Chemical Engineering">Chemical Engineering</option>
+        <option value="Data Science">Data Science</option>
+        <option value="Civil Engineering">Civil Engineering</option>
+        <option value="Artificial Intelligence">Artificial Intelligence</option>
+    </select>
+
+    <!-- Skills -->
+    <label>Skills:</label>
+    <div>
+        <input type="checkbox" name="skills" value="Artificial Intelligence"> Artificial Intelligence<br>
+        <input type="checkbox" name="skills" value="Cloud Computing"> Cloud Computing<br>
+        <input type="checkbox" name="skills" value="Computer Networks"> Computer Networks<br>
+        <input type="checkbox" name="skills" value="Data Structures & Algorithms (DSA)"> Data Structures & Algorithms (DSA)<br>
+        <input type="checkbox" name="skills" value="DevOps"> DevOps<br>
+        <input type="checkbox" name="skills" value="Machine Learning"> Machine Learning<br>
+        <input type="checkbox" name="skills" value="Operating Systems"> Operating Systems<br>
+        <input type="checkbox" name="skills" value="PostgreSQL"> PostgreSQL<br>
+        <input type="checkbox" name="skills" value="SQL"> SQL<br>
+        <input type="checkbox" name="skills" value="Web Development"> Web Development<br>
+    </div>
+
+    <!-- Languages -->
+    <label>Languages:</label>
+    <div>
+        <input type="checkbox" name="languages" value="C"> C<br>
+        <input type="checkbox" name="languages" value="C++"> C++<br>
+        <input type="checkbox" name="languages" value="Java"> Java<br>
+        <input type="checkbox" name="languages" value="JavaScript"> JavaScript<br>
+        <input type="checkbox" name="languages" value="Python"> Python<br>
+        <input type="checkbox" name="languages" value="R"> R<br>
+        <input type="checkbox" name="languages" value="Ruby"> Ruby<br>
+    </div>
+
+    <!-- Job Experience -->
+    <label for="job_experience">Job Experience (Company name):</label>
+    <input type="text" id="job_experience" name="job_experience" required>
+
+    <!-- Extra Curricular -->
+    <label for="extra_curricular">Extra Curricular Activities:</label>
+    <input type="text" id="extra_curricular" name="extra_curricular" required>
+
+    <!-- Internship Duration -->
+    <label for="internship_duration">Internship Duration (Months):</label>
+    <input type="number" id="internship_duration" name="internship_duration" required>
+
+    <!-- Research Papers -->
+    <label for="research_papers">Number of Research Papers:</label>
+    <input type="number" id="research_papers" name="research_papers" required>
+
+    <button type="submit">Submit</button>
+</form>
+<div class="view-data-link">
+    <a href="/view-data">View Submitted Data</a>
+</div>
+<script>
+
+document.getElementById('studentForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const name=form.name.value;
+    const gpa = form.gpa.value;
+    const degree = form.degree.value;
+
+    const skills = Array.from(form.skills)
+                        .filter(skill => skill.checked)
+                        .map(skill => skill.value);
+
+    const languages = Array.from(form.languages)
+                           .filter(lang => lang.checked)
+                           .map(lang => lang.value);
+
+    const jobExperience = form.job_experience.value;
+    const extraCurricular = form.extra_curricular.value;
+    const internshipDuration = form.internship_duration.value;
+    const researchPapers = form.research_papers.value;
+
+    const studentData = {
+        name: name,
+        gpa: gpa,
+        degree: degree,
+        skills: skills,
+        languages: languages,
+        jobExperience: jobExperience,
+        extraCurricular: extraCurricular,
+        internshipDuration: internshipDuration,
+        researchPapers: researchPapers
+    };
+    console.log(studentData);
+    try {
+        const response = await fetch('http://localhost:5000/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(studentData)
+        });
+
+        if (response.ok) {
+            alert('Form submitted successfully!');
+        } else {
+            alert('Failed to submit form. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error submitting form. Please check your server connection.');
+    }
+});
+
+
+</script>
+
+</body>
+</html>

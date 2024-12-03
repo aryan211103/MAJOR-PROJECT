@@ -1,0 +1,203 @@
+/* General Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; /* Adjusted to prevent cutting off */
+    align-items: flex-start;
+    min-height: 100vh;
+    color: #333;
+    transition: all 0.4s ease;
+    overflow-y: auto; /* Allow scrolling */
+}
+
+/* Styling the Page Header */
+h1 {
+    text-align: center;
+    color: #000000;
+    font-size: 2.5em; /* Adjusted size for better fit */
+    margin: 20px 0; /* Added margin for spacing */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 1; /* Ensure it appears above other elements */
+    position: relative; /* Ensure it stays visible */
+    animation: fadeInDown 1.5s ease-in-out;
+}
+
+/* Container Styling */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 0; /* Ensure it's behind the title */
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* Styling for the Select Menu and Buttons */
+#course-section select, button {
+    padding: 12px 20px;
+    margin: 15px 0;
+    border: 2px solid #ACB6E5;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#course-section select {
+    width: 100%;
+    background: #fff;
+    color: #333;
+}
+
+button {
+    background: #74ebd5;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ACB6E5;
+}
+
+/* Quiz Section */
+#quiz-section h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.question {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.3s ease-in-out;
+    overflow: auto; /* Prevent cutting off content */
+}
+
+.question h3 {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.options label {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.options label:hover {
+    background: #e0f7fa;
+}
+
+/* Submit Button */
+#submit-quiz {
+    padding: 15px 30px;
+    background: #74ebd5;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#submit-quiz:hover {
+    background: #ACB6E5;
+}
+
+/* Recommendation Section */
+#recommendation-section {
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+#recommendation-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+#skill-level, #score-display {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#recommendation-list {
+    list-style: none;
+    padding: 0;
+}
+
+#recommendation-list li {
+    background: #e3f2fd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+}
+
+#recommendation-list li:hover {
+    background: #bbdefb;
+}
+
+#recommendation-list a {
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#recommendation-list a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
